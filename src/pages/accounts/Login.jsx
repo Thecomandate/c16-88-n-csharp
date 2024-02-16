@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
-export default function Login() {
+export default function Login({ setStep }) {
   const navigate = useNavigate();
   const email = "prueba@prueba";
   const passwords = "prueba";
@@ -72,12 +72,12 @@ export default function Login() {
                 Password
               </label>
               <div className="text-sm">
-                <a
-                  href="#"
+                <p
+                  onClick={() => setStep(1)}
                   className="font-semibold text-indigo-600 hover:text-indigo-500"
                 >
-                  Forgot password?
-                </a>
+                  ¿Olvidó su Contraseña?
+                </p>
               </div>
             </div>
             <div className="mt-2">
@@ -103,13 +103,13 @@ export default function Login() {
         </form>
 
         <p className="mt-10 text-center text-sm text-gray-500">
-          Not a member?{" "}
-          <a
-            href="#"
+          No es Miembro?{" "}
+          <p
+            onClick={() => setStep(2)}
             className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
           >
-            Start a 14 day free trial
-          </a>
+            Registrar Cuenta
+          </p>
         </p>
       </div>
     </div>
