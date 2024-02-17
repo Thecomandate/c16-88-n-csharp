@@ -14,7 +14,7 @@ export default function Forgot({setStep}) {
         </label>
         <input className="border-2" type="text" />
         
-          <button onClick={()=>setStep(0)} className="border-2 ">Atras </button>
+          <button onClick={()=>setStep(0)} className="border-2 ">Atras</button>
         
       </div>
     </div>
