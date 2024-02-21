@@ -3,7 +3,7 @@ import React from "react";
 import Login from "../accounts/Login";
 export default function Nabvar({ setStep,user}) {
   return (
-    <div className="border-2 h-20">
+    <div className="border-2 h-[10%]">
       <img
         className="h-14 w-auto flex justify-start mx-4 mt-2"
         src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"

@@ -9,8 +9,7 @@ export default function Login() {
   const passwords = "prueba";
   let userEmail = "";
   let password = "";
-  const loginUser = (e) => {
-    e.preventDefault();
+  const loginUser = () => {
     userEmail = document.getElementById("email").value;
 
     password = document.getElementById("password").value;
@@ -97,7 +96,7 @@ export default function Login() {
 
           <div>
             <button
-              type="submit"
+              onClick={() => loginUser()}
               className="flex w-full justify-center rounded-md bg-[#464054] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#a19dbd] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Ingresar
