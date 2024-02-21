@@ -4,7 +4,7 @@ export default function SignUp({ setStep }) {
   return(
   <div className="grid justify-center items-center h-screen bg-[#0d6f4b]">
     <div className="text-xl font-bold text-[#9eeac1] flex flex-col gap-3 p-4 relative">
-      <p className="absolute right-4 -top-4">
+      <p onClick={()=>setStep(0)} className="absolute right-4 -top-4">
         Atras
       </p>
     <h1 className="text-[#edfcf4] ">Registrate</h1>
