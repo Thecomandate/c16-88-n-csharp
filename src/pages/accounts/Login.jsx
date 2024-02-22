@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import MyContext from "../../lib/context";
+import { useContext } from "react";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -7,8 +9,7 @@ export default function Login() {
   const passwords = "prueba";
   let userEmail = "";
   let password = "";
-  const loginUser = (e) => {
-    e.preventDefault();
+  const loginUser = () => {
     userEmail = document.getElementById("email").value;
 
     password = document.getElementById("password").value;
@@ -17,11 +18,12 @@ export default function Login() {
       alert("Usuario no encontrado");
       return;
     }
-
-    navigate("/home");
+    navigate("/");
 
     console.log(userEmail, password);
   };
+  const usercontext = useContext(MyContext);
+  const { setStep } = usercontext;
 
   // const handleEmail = (e) => {
   //   setUserEmail(e.target.value);
@@ -31,7 +33,7 @@ export default function Login() {
   // };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-slate-400">
+    <div className="flex items-center justify-center h-screen bg-[#8c85ac]">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -43,7 +45,7 @@ export default function Login() {
             Login Prueba
           </h2>
         </div>
-        <form onSubmit={loginUser} className="space-y-6">
+        <div className="space-y-6">
           <div>
             <label
               htmlFor="email"
@@ -72,12 +74,12 @@ export default function Login() {
                 Password
               </label>
               <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
+                <button
+                  onClick={() => setStep(1)}
+                  className="font-semibold text-[#f5f5f9] hover:text-black"
                 >
-                  Forgot password?
-                </a>
+                  ¿Olvidó su Contraseña?
+                </button>
               </div>
             </div>
             <div className="mt-2">
@@ -94,22 +96,22 @@ export default function Login() {
 
           <div>
             <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              onClick={() => loginUser()}
+              className="flex w-full justify-center rounded-md bg-[#464054] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#a19dbd] hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               Ingresar
             </button>
           </div>
-        </form>
+        </div>
 
-        <p className="mt-10 text-center text-sm text-gray-500">
-          Not a member?{" "}
-          <a
-            href="#"
-            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+        <p className="mt-10 text-center text-sm text-[#000000]">
+          No es Miembro?{" "}
+          <button
+            onClick={() => setStep(2)}
+            className="font-semibold leading-6 text-[#f5f5f9] hover:text-fuchsia-300"
           >
-            Start a 14 day free trial
-          </a>
+            Registrar Cuenta
+          </button>
         </p>
       </div>
     </div>
