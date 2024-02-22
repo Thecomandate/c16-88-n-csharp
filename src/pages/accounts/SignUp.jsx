@@ -2,7 +2,6 @@ import React from "react";
 import LogoFlowbite from "../../assets/logo-flowbite.svg";
 
 export default function SignUp({ setStep }) {
-<<<<<<< HEAD
   return (
     <div className="bg-gray-50">
       <div className="container  flex flex-col mx-auto justify-between w-screen h-screen gap-4 lg:gap-10 p-4 lg:p-10">
@@ -130,21 +129,5 @@ export default function SignUp({ setStep }) {
         </div>
       </div>
     </div>
-=======
-  return(
-  <div className="grid justify-center items-center h-screen bg-[#0d6f4b]">
-    <div className="text-xl font-bold text-[#9eeac1] flex flex-col gap-3 p-4 relative">
-      <p onClick={()=>setStep(0)} className="absolute right-4 -top-4">
-        Atras
-      </p>
-    <h1 className="text-[#edfcf4] ">Registrate</h1>
-    <label  htmlFor="">Ingresa tu Correo</label>
-    <input className="border-2 text-black" type="text" />
-    <label htmlFor="">Contraseña</label>
-    <input className="border-2 text-black" type="text" />
-    <button className=" bg-[#0d583d] mx-auto mt-4 px-2 py-2 border-2 rounded-lg w-32 hover:bg-[#77dead] hover:text-black">Registrar</button>
-    </div>
-  </div>
->>>>>>> 38075d7996bacb291809294573f3279dfe52f4e6
   );
 }
