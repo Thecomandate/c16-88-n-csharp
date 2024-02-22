@@ -24,7 +24,7 @@ export default function SignUp({ setStep }) {
           </nav>
         </header>
         <div className="container grid grid-cols-1 lg:grid-cols-2 place-items-center  mx-auto max-w-7xl flex-1">
-          <div className="hidden md:flex flex-col p-10 gap-4">
+          <div className="hidden lg:flex flex-col p-10 gap-4">
             <h2 className="text-5xl">
               Todos tus proyectos, <br /> <strong>en un solo lugar</strong>
             </h2>
@@ -37,7 +37,7 @@ export default function SignUp({ setStep }) {
               comunidad.
             </p>
           </div>
-          <div className="flex min-h-full flex-col w-full justify-start lg:justify-center align-middle">
+          <div className="flex min-h-full flex-col w-full justify-center lg:justify-center align-middle">
             <div className="mt-10 sm:mx-auto w-full h-full max-w-sm mx-auto">
               <form className="space-y-4" action="#" method="POST">
                 <div>
