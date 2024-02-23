@@ -1,37 +1,52 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState} from "react";
 import MyContext from "../../lib/context";
 import { useContext } from "react";
+import Swal from "sweetalert2";
 import LogoFlowbite from "../../assets/logo-flowbite.svg";
 
 export default function Login() {
+  const [userEmail, setUserEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const email = "prueba@prueba";
-  const passwords = "prueba";
-  let userEmail = "";
-  let password = "";
-  const loginUser = () => {
-    userEmail = document.getElementById("email").value;
-
-    password = document.getElementById("password").value;
-
-    if (email !== userEmail) {
-      alert("Usuario no encontrado");
+  const email = localStorage.getItem("email");
+  console.log(email);
+  const passwords = localStorage.getItem("password");
+  console.log(passwords);
+  const handleEmail = (e) => {
+    setUserEmail(e.target.value);
+  };
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const loginUser = (e) => {
+    e.preventDefault();
+    if (email !== userEmail && password !== passwords) {
+      Swal.fire({
+        icon: "error",
+        title: "¡Error!",
+        text: "¡Usuario o contraseña incorrecta!",
+      });
       return;
     }
-    navigate("/");
+    else if (userEmail === email && passwords === password)
+    {
+      Swal.fire({
+        icon: "success",
+        title: "Inicio de sesión exitoso",
+        text: "¡Bienvenido de nuevo!",
+      });
+      localStorage.setItem("isLogged", true);
 
-    console.log(userEmail, password);
+      navigate("/");
+    }
+
   };
+  
   const usercontext = useContext(MyContext);
   const { setStep } = usercontext;
 
-  // const handleEmail = (e) => {
-  //   setUserEmail(e.target.value);
-  // };
-  // const handlePassword = (e) => {
-  //   setPassword(e.target.value);
-  // };
+ 
 
   return (
     <div className="bg-gray-50">
@@ -78,6 +93,8 @@ export default function Login() {
                       id="username"
                       name="username"
                       type="text"
+                      onChange={(e) => handleEmail(e)}
+                      value={userEmail}
                       required
                       placeholder="johndoe1"
                       className="block w-full rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -99,6 +116,8 @@ export default function Login() {
                       id="password"
                       name="password"
                       type="password"
+                      onChange={(e)=>handlePassword(e)}
+                      value={password}
                       required
                       placeholder="*********"
                       className="block w-full rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -108,6 +127,7 @@ export default function Login() {
 
                 <div>
                   <button
+                  onClick={loginUser}
                     type="submit"
                     className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >

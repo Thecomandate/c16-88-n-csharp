@@ -1,14 +1,22 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useState, useEffect } from "react";
 
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/scrollbar";
-import "swiper/css/navigation";
+function Home({ Logear }) {
+  const [user, setUser] = useState([]);
 
-import { FreeMode, Scrollbar, Mousewheel } from "swiper/modules";
-import { Navigation } from "swiper/modules";
+  useEffect(() => {
+    // Hacer una solicitud a la API cuando el componente se monta
+    fetch("https://jsonplaceholder.typicode.com/todos")
+      .then((response) => response.json())
+      .then((data) => {
+        // Actualizar el estado con los datos de la API
+        setUser(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+  console.log(user);
 
-function Home() {
   return (
     <div className="flex  w-screen h-[90%]">
       {/*Perfil de usuario*/}
@@ -25,36 +33,28 @@ function Home() {
         <span className="text-black cursor-pointer ml-3">Soporte</span>
         <span className="text-black cursor-pointer ml-3">Ayuda</span>
         <span className="text-black cursor-pointer ml-3">Contacto</span>
-        <span className="text-black cursor-pointer ml-3">Cerrar Sesion</span>
+        {Logear && (
+          <span
+            onClick={() => {
+              localStorage.removeItem("isLogged");
+              window.location.href = "/";
+            }}
+            className="text-black cursor-pointer ml-3"
+          >
+            Cerrar Sesion
+          </span>
+        )}
       </div>
       {/*Contenido*/}
       <div className="bg-red-300 w-[80%] h-full">
-      <Swiper
-        direction={'vertical'}
-        slidesPerView={'auto'}
-        freeMode={true}
-        scrollbar={true}
-        mousewheel={true}
-        modules={[FreeMode, Scrollbar, Mousewheel]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-      </Swiper>
-      
-          <h4>Contenido</h4>
-          
-        </SwiperSlide>
-      </Swiper>
+        <div>
+          <h1>Lista de Usuarios</h1>
+          <ul>
+            {user.map((user) => (
+              <li key={user.id}>{user.title}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

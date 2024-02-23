@@ -1,7 +1,8 @@
 import {Link } from "react-router-dom";
 import React from "react";
 import Login from "../accounts/Login";
-export default function Nabvar({ setStep,user}) {
+export default function Nabvar({ Logear}) {
+  const Nombre = localStorage.getItem("username");
   return (
     <div className="border-2 h-[10%]">
       <img
@@ -12,7 +13,7 @@ export default function Nabvar({ setStep,user}) {
       <div className="flex justify-end gap-10 text-xl -my-11 mr-3">
         <Link>Sabe</Link>
         <Link>dios</Link>
-        <Link to={"/login"}>Login</Link>
+        <Link to={"/login"}>{Logear?"Hola " + Nombre: "Login"}</Link>
       </div>
     </div>
   );

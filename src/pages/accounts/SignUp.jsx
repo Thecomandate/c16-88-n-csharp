@@ -1,8 +1,20 @@
-import React from "react";
+import{useState} from "react";
 import LogoFlowbite from "../../assets/logo-flowbite.svg";
 
 export default function SignUp({ setStep }) {
-  return (
+  const [username, setUsername] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+   const handleRegistrar = (e) => {
+    e.preventDefault();
+    localStorage.setItem("username", username);
+    localStorage.setItem("email", userEmail)
+    localStorage.setItem("password", password);
+    setStep(0);
+   };
+
+    return (
     <div className="bg-gray-50">
       <div className="container  flex flex-col mx-auto justify-between w-screen h-screen gap-4 lg:gap-10 p-4 lg:p-10">
         <header>
@@ -47,6 +59,7 @@ export default function SignUp({ setStep }) {
                   </label>
                   <div className="mt-2">
                     <input
+                    onChange={(e) => setUsername(e.target.value)}
                       id="username"
                       name="username"
                       type="text"
@@ -65,6 +78,7 @@ export default function SignUp({ setStep }) {
                   </label>
                   <div className="mt-2">
                     <input
+                    onChange={(e) => setUserEmail(e.target.value)}
                       id="email"
                       name="email"
                       type="email"
@@ -85,6 +99,7 @@ export default function SignUp({ setStep }) {
                   </div>
                   <div className="mt-2">
                     <input
+                    onChange={(e) => setPassword(e.target.value)}
                       id="password"
                       name="password"
                       type="password"
@@ -96,6 +111,7 @@ export default function SignUp({ setStep }) {
 
                 <div>
                   <button
+                  onClick={handleRegistrar}
                     type="submit"
                     className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
