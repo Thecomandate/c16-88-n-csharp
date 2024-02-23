@@ -10,16 +10,11 @@ export default function SignUp({ setStep }) {
             className="container bg-white mx-auto flex max-w-7xl items-center justify-between py-6 px-8"
             aria-label="Global"
           >
-            <div>
-              <a
-                href="/"
-                className="container flex flex-row place-items-center gap-4"
-              >
-                <img className="h-8 w-auto" src={LogoFlowbite} alt="" />
-                <span>
-                  <h1 className="text-black text-2xl">Flowbite</h1>
-                </span>
-              </a>
+            <div className="container flex flex-row place-items-center gap-4">
+              <img className="h-8 w-auto" src={LogoFlowbite} alt="" />
+              <span>
+                <h1 className="text-black text-2xl">Flowbite</h1>
+              </span>
             </div>
           </nav>
         </header>
@@ -41,6 +36,9 @@ export default function SignUp({ setStep }) {
             <div className="mt-10 sm:mx-auto w-full h-full max-w-sm mx-auto">
               <form className="space-y-4" action="#" method="POST">
                 <div>
+                <p onClick={()=> setStep(0)} className="text-end cursor-pointer">
+                  Atras
+                </p>
                   <label
                     htmlFor="username"
                     className="block text-sm font-medium leading-6 text-gray-900"
@@ -116,12 +114,9 @@ export default function SignUp({ setStep }) {
                   <span className="text-black mr-3">
                     ¿Ya tienes una cuenta?
                   </span>
-                  <a
-                    href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
+                  <p className="font-semibold cursor-pointer text-indigo-600 hover:text-indigo-500">
                     Inicia sesión
-                  </a>
+                  </p>
                 </div>
               </form>
             </div>
