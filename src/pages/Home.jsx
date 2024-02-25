@@ -1,33 +1,23 @@
-import { useState, useEffect } from "react";
-
+import { Route,Routes, useLocation }  from "react-router-dom";
+import Actividad from "./nabvar-struct/Actividad";
+import Btrabajo from "./nabvar-struct/Btrabajo";
+import Productos from "./nabvar-struct/Productos";
 function Home({ Logear }) {
-  const [user, setUser] = useState([]);
-
-  useEffect(() => {
-    // Hacer una solicitud a la API cuando el componente se monta
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => response.json())
-      .then((data) => {
-        // Actualizar el estado con los datos de la API
-        setUser(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
-  console.log(user);
+  const Nombre = localStorage.getItem("username");
+  const location = useLocation();
+  console.log(location);
 
   return (
-    <div className="flex  w-screen h-[90%]">
+    <div className="flex  w-screen h-[90%] bg-[#ffffff]">
       {/*Perfil de usuario*/}
-      <div className="bg-[#3798fa] w-[20%] h-full flex flex-col gap-5">
+      <div className="border-2 w-[10%] h-full flex flex-col gap-5">
         <span className="flex items-center cursor-pointer">
           <img
-            className="h-10 w-auto flex justify-start mx-4 mt-2 rounded-full"
+            className="h-10 w-auto flex justify-start mx-2 mt-2 rounded-full"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
             alt="Logo"
           />
-          <p className="text-black">UserName</p>
+          <p className="text-black">{Logear ? " " + Nombre : "UserName"}</p>
         </span>
         <span className="text-black cursor-pointer ml-3">Configuracion</span>
         <span className="text-black cursor-pointer ml-3">Soporte</span>
@@ -43,19 +33,27 @@ function Home({ Logear }) {
           >
             Cerrar Sesion
           </span>
-        )}
+        )} 
       </div>
       {/*Contenido*/}
-      <div className="bg-red-300 w-[80%] h-full">
-        <div>
-          <h1>Lista de Usuarios</h1>
-          <ul>
-            {user.map((user) => (
-              <li key={user.id}>{user.title}</li>
-            ))}
-          </ul>
+      <Routes>
+        <Route path="/Btrabajo" element={<Btrabajo/>} />
+        <Route path="/Actividad" element={<Actividad/>} />
+        <Route path="/Productos" element={<Productos/>} />
+      </Routes>
+      
+      {location.pathname === "/" && <div className="w-[90%] h-full">
+        <div className="grid grid-cols-4 justify-between gap-2 h-[90%] mt-3 ml-3 mr-3">
+          <div className="border-2 border-black"></div>
+          <div className="border-2 border-black"></div>
+          <div className="border-2 border-black"></div>
+          <div className="border-2 border-black"></div>
+          <div className="border-2 border-black"></div>
+          <div className="border-2 border-black"></div>
+          <div className="border-2 border-black"></div>
+          <div className="border-2 border-black"></div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

@@ -21,7 +21,7 @@ export default function Login() {
   };
   const loginUser = (e) => {
     e.preventDefault();
-    if (email !== userEmail && password !== passwords) {
+    if (email !== userEmail || password !== passwords) {
       Swal.fire({
         icon: "error",
         title: "¡Error!",

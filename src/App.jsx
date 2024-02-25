@@ -15,7 +15,7 @@ function App() {
     <MyContextProvider>
       {pathname !== "/login" && <Nabvar Logear={Logear}/>}
       <Routes>
-        <Route path="/" element={<Home Logear={Logear} />} />
+        <Route path="/*" element={<Home Logear={Logear} />} />
         <Route path="/login" element={<PagesLogin/>} />
       </Routes>
     </MyContextProvider>

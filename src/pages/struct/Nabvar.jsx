@@ -1,7 +1,7 @@
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React from "react";
 import Login from "../accounts/Login";
-export default function Nabvar({ Logear}) {
+export default function Nabvar({ Logear }) {
   const Nombre = localStorage.getItem("username");
   return (
     <div className="border-2 h-[10%]">
@@ -11,9 +11,12 @@ export default function Nabvar({ Logear}) {
         alt="Logo"
       />
       <div className="flex justify-end gap-10 text-xl -my-11 mr-3">
-        <Link>Sabe</Link>
-        <Link>dios</Link>
-        <Link to={"/login"}>{Logear?"Hola " + Nombre: "Login"}</Link>
+        <Link to="/">Inicio</Link>
+        <Link to="/Btrabajo">Bolsa de trabajo</Link>
+        <Link to="/Actividad">Actividad</Link>
+        <Link to="/Productos">Productos</Link>
+
+        {Logear ? <p>{"Hola " + Nombre}</p> : <Link to={"/login"}>Login</Link>}
       </div>
     </div>
   );
