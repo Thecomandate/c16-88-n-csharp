@@ -9,11 +9,13 @@ import PagesLogin from "./pages/accounts/PagesLogin";
 function App() {
   const location = useLocation();
   const {pathname} = location;
+  const Logear = localStorage.getItem("isLogged");
   return (
+
     <MyContextProvider>
-      {pathname !== "/login" && <Nabvar/>}
+      {pathname !== "/login" && <Nabvar Logear={Logear}/>}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/*" element={<Home Logear={Logear} />} />
         <Route path="/login" element={<PagesLogin/>} />
       </Routes>
     </MyContextProvider>
