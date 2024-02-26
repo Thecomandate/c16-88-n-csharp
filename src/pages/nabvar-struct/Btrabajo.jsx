@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Btrabajo() {
   return (
-    <div className="border-2 w-[90%]">
+    <div className="w-[90%]">
       <div>
         {/*Tabla de contenido*/}
         <div className="">

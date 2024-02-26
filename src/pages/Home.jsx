@@ -1,4 +1,4 @@
-import { Route,Routes, useLocation }  from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Actividad from "./nabvar-struct/Actividad";
 import Btrabajo from "./nabvar-struct/Btrabajo";
 import Productos from "./nabvar-struct/Productos";
@@ -9,17 +9,16 @@ function Home({ Logear }) {
   console.log(location);
 
   return (
-    <div className="flex  w-screen h-[90%] bg-[#ffffff]">
+    <div className="flex w-full min-h-full bg-[#ffffff]">
       {/*Perfil de usuario*/}
-      <div className="border-2 w-[10%] h-full flex flex-col gap-5">
-        <span className="flex items-center cursor-pointer">
-          <img
-            className="h-10 w-auto flex justify-start mx-2 mt-2 rounded-full"
-            src={LogoFlowbite}
-            alt="Logo"
-          />
-          <p className="text-black">{Logear ? " " + Nombre : "UserName"}</p>
-        </span>
+      <div className="w-[10%]"></div>
+      <div className="w-[10%] top-0 bottom-0 fixed justify-center items-center flex flex-col gap-5">
+        <img
+          className="h-10 w-auto flex justify-start mx-2 mt-2 rounded-full"
+          src={LogoFlowbite}
+          alt="Logo"
+        />
+        <p className="text-black">{Logear ? " " + Nombre : "UserName"}</p>
         <span className="text-black cursor-pointer ml-3">Configuracion</span>
         <span className="text-black cursor-pointer ml-3">Soporte</span>
         <span className="text-black cursor-pointer ml-3">Ayuda</span>
@@ -34,27 +33,27 @@ function Home({ Logear }) {
           >
             Cerrar Sesion
           </span>
-        )} 
+        )}
       </div>
       {/*Contenido*/}
       <Routes>
-        <Route path="/Btrabajo" element={<Btrabajo/>} />
-        <Route path="/Actividad" element={<Actividad/>} />
-        <Route path="/Productos" element={<Productos/>} />
+        <Route path="/Btrabajo" element={<Btrabajo />} />
+        <Route path="/Actividad" element={<Actividad />} />
+        <Route path="/Productos" element={<Productos />} />
       </Routes>
-      
-      {location.pathname === "/" && <div className="w-[90%] h-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-between gap-2 h-[90%] mt-3 ml-3 mr-3">
-          <div className="border-2 border-black"></div>
-          <div className="border-2 border-black"></div>
-          <div className="border-2 border-black"></div>
-          <div className="border-2 border-black"></div>
-          <div className="border-2 border-black"></div>
-          <div className="border-2 border-black"></div>
-          <div className="border-2 border-black"></div>
-          <div className="border-2 border-black"></div>
+
+      {location.pathname === "/" && (
+        <div className="grid grid-cols-1 w-full p-4 sm:grid-cols-2 lg:grid-cols-4 justify-between gap-2">
+          <div className="border border-black"></div>
+          <div className="border border-black"></div>
+          <div className="border border-black"></div>
+          <div className="border border-black"></div>
+          <div className="border border-black"></div>
+          <div className="border border-black"></div>
+          <div className="border border-black"></div>
+          <div className="border border-black"></div>
         </div>
-      </div>}
+      )}
     </div>
   );
 }

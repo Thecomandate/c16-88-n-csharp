@@ -12,6 +12,7 @@ function App() {
   const Logear = localStorage.getItem("isLogged");
   return (
 
+    
     <MyContextProvider>
       {pathname !== "/login" && <Nabvar Logear={Logear}/>}
       <Routes>
