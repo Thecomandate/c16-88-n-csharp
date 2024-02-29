@@ -3,7 +3,19 @@ import Actividad from "./nabvar-struct/Actividad";
 import Btrabajo from "./nabvar-struct/Btrabajo";
 import Productos from "./nabvar-struct/Productos";
 import LogoFlowbite from "../assets/logo-flowbite.svg";
+import { GrHelp } from "react-icons/gr";
+import { CiLogout } from "react-icons/ci";
+import { IoIosContact } from "react-icons/io";
+import { BiSupport } from "react-icons/bi";
+import { HiOutlineCog6Tooth } from "react-icons/hi2";
+import { useState } from "react";
+
 function Home({ Logear }) {
+  const [mostrarTextoCong, setMostrarTextoCong] = useState(false);
+  const [mostrarTextoSup, setMostrarTextoSup] = useState(false);
+  const [mostrarTextoHelp, setMostrarTextoHelp] = useState(false);
+  const [mostrarTextoContact, setMostrarTextoContact] = useState(false);
+  const [mostrarTextoLogout, setMostrarTextoLogout] = useState(false);
   const Nombre = localStorage.getItem("username");
   const location = useLocation();
   console.log(location);
@@ -11,29 +23,42 @@ function Home({ Logear }) {
   return (
     <div className="flex w-full min-h-full bg-[#ffffff]">
       {/*Perfil de usuario*/}
-      <div className="w-[10%]"></div>
-      <div className="w-[10%] top-0 bottom-0 fixed justify-center items-center flex flex-col gap-5">
+      <div className="w-[5%]"></div>
+      <div className="w-[5%] top-0 bottom-0 fixed justify-center items-center flex flex-col gap-8">
         <img
           className="h-10 w-auto flex justify-start mx-2 mt-2 rounded-full"
           src={LogoFlowbite}
           alt="Logo"
         />
-        <p className="text-black">{Logear ? " " + Nombre : "UserName"}</p>
-        <span className="text-black cursor-pointer ml-3">Configuracion</span>
-        <span className="text-black cursor-pointer ml-3">Soporte</span>
-        <span className="text-black cursor-pointer ml-3">Ayuda</span>
-        <span className="text-black cursor-pointer ml-3">Contacto</span>
+        <div className="cursor-pointer" onMouseEnter={() => setMostrarTextoCong(true)} onMouseLeave={() => setMostrarTextoCong(false)}>
+        <HiOutlineCog6Tooth className="text-2xl"/>
+        <p className={`text-xs absolute rounded-lg p-1 bg-black text-white ${mostrarTextoCong ? 'opacity-100 animate-cloudIn' : 'opacity-0'}`}>Configuracion</p>
+        </div>
+
+        <div className="cursor-pointer" onMouseEnter={() => setMostrarTextoSup(true)} onMouseLeave={() => setMostrarTextoSup(false)}>
+        <BiSupport className="text-2xl"/>
+        <p className={`text-xs absolute rounded-lg p-1 bg-black text-white ${mostrarTextoSup ? 'opacity-100 animate-cloudIn' : 'opacity-0'}`}>Soporte</p>
+        </div>
+
+        <div className="cursor-pointer" onMouseEnter={() => setMostrarTextoHelp(true)} onMouseLeave={() => setMostrarTextoHelp(false)}>
+        <GrHelp className="text-2xl" />
+        <p className={`text-xs absolute rounded-lg p-1 bg-black text-white ${mostrarTextoHelp ? 'opacity-100 animate-cloudIn' : 'opacity-0'}`}>Ayuda</p>
+        </div>
+        <div className="cursor-pointer" onMouseEnter={() => setMostrarTextoContact(true)} onMouseLeave={() => setMostrarTextoContact(false)}>
+        <IoIosContact className="text-2xl" />
+        <p className={`text-xs absolute rounded-lg p-1 bg-black text-white ${mostrarTextoContact ? 'opacity-100 animate-cloudIn' : 'opacity-0'}`}>Contacto</p>
+        </div>
+
+        <div className="cursor-pointer" onMouseEnter={() => setMostrarTextoLogout(true)} onMouseLeave={() =>setMostrarTextoLogout(false)}>
         {Logear && (
-          <span
-            onClick={() => {
-              localStorage.removeItem("isLogged");
-              window.location.href = "/";
-            }}
-            className="text-black cursor-pointer ml-3"
-          >
-            Cerrar Sesion
-          </span>
+          <CiLogout onClick={() => {
+            localStorage.removeItem("isLogged");
+            window.location.href = "/";
+          }} className="cursor-pointer text-2xl" />
+          
         )}
+        <p className={`text-xs absolute rounded-lg p-1 bg-black text-white ${mostrarTextoLogout ? 'opacity-100 animate-cloudIn' : 'opacity-0'}`}>Cerrar sesion</p>
+        </div>
       </div>
       {/*Contenido*/}
       <Routes>
