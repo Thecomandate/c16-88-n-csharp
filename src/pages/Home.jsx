@@ -39,7 +39,6 @@ function Home({ Logear }) {
         <BiSupport className="text-2xl"/>
         <p className={`text-xs absolute rounded-lg p-1 bg-black text-white ${mostrarTextoSup ? 'opacity-100 animate-cloudIn' : 'opacity-0'}`}>Soporte</p>
         </div>
-
         <div className="cursor-pointer" onMouseEnter={() => setMostrarTextoHelp(true)} onMouseLeave={() => setMostrarTextoHelp(false)}>
         <GrHelp className="text-2xl" />
         <p className={`text-xs absolute rounded-lg p-1 bg-black text-white ${mostrarTextoHelp ? 'opacity-100 animate-cloudIn' : 'opacity-0'}`}>Ayuda</p>
