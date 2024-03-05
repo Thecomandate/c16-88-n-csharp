@@ -1,52 +1,38 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import MyContext from "../../lib/context";
-import { useContext } from "react";
 import Swal from "sweetalert2";
 import LogoFlowbite from "../../assets/logo-flowbite.svg";
 
 export default function Login() {
+  const [data, setData] = useState({});
   const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const email = localStorage.getItem("email");
   console.log(email);
   const passwords = localStorage.getItem("password");
   console.log(passwords);
+
   const handleEmail = (e) => {
     setUserEmail(e.target.value);
   };
+
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
-  const loginUser = (e) => {
+
+  const loginUser = async (e) => {
     e.preventDefault();
-    if (email !== userEmail || password !== passwords) {
-      Swal.fire({
-        icon: "error",
-        title: "¡Error!",
-        text: "¡Usuario o contraseña incorrecta!",
-      });
-      return;
-    }
-    else if (userEmail === email && passwords === password)
-    {
-      Swal.fire({
-        icon: "success",
-        title: "Inicio de sesión exitoso",
-        text: "¡Bienvenido de nuevo!",
-      });
-      localStorage.setItem("isLogged", true);
 
-      navigate("/");
-    }
-
+    
   };
-  
+  console.log(loginUser);
+  console.log(data);
+
   const usercontext = useContext(MyContext);
   const { setStep } = usercontext;
-
- 
 
   return (
     <div className="bg-gray-50">
@@ -116,7 +102,7 @@ export default function Login() {
                       id="password"
                       name="password"
                       type="password"
-                      onChange={(e)=>handlePassword(e)}
+                      onChange={(e) => handlePassword(e)}
                       value={password}
                       required
                       placeholder="*********"
@@ -127,7 +113,7 @@ export default function Login() {
 
                 <div>
                   <button
-                  onClick={loginUser}
+                    onClick={loginUser}
                     type="submit"
                     className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >

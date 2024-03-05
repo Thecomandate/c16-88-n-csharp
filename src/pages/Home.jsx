@@ -9,6 +9,11 @@ import { IoIosContact } from "react-icons/io";
 import { BiSupport } from "react-icons/bi";
 import { HiOutlineCog6Tooth } from "react-icons/hi2";
 import { useState } from "react";
+import Configuracion from "./user-struct/Configuracion";
+import Ayuda from "./user-struct/Ayuda";
+import Soporte from "./user-struct/Soporte";
+import Contacto from "./user-struct/Contacto";
+import { Link } from "react-router-dom";
 
 function Home({ Logear }) {
   const [mostrarTextoCong, setMostrarTextoCong] = useState(false);
@@ -30,23 +35,33 @@ function Home({ Logear }) {
           src={LogoFlowbite}
           alt="Logo"
         />
+        <Link to="/Configuracion">
         <div className="cursor-pointer" onMouseEnter={() => setMostrarTextoCong(true)} onMouseLeave={() => setMostrarTextoCong(false)}>
         <HiOutlineCog6Tooth className="text-2xl"/>
         <p className={`text-xs absolute rounded-lg p-1 bg-black text-white ${mostrarTextoCong ? 'opacity-100 animate-cloudIn' : 'opacity-0'}`}>Configuracion</p>
         </div>
+        </Link>
 
+        <Link to="/Soporte">
         <div className="cursor-pointer" onMouseEnter={() => setMostrarTextoSup(true)} onMouseLeave={() => setMostrarTextoSup(false)}>
         <BiSupport className="text-2xl"/>
         <p className={`text-xs absolute rounded-lg p-1 bg-black text-white ${mostrarTextoSup ? 'opacity-100 animate-cloudIn' : 'opacity-0'}`}>Soporte</p>
         </div>
+        </Link>
+
+        <Link to="/Ayuda">
         <div className="cursor-pointer" onMouseEnter={() => setMostrarTextoHelp(true)} onMouseLeave={() => setMostrarTextoHelp(false)}>
         <GrHelp className="text-2xl" />
         <p className={`text-xs absolute rounded-lg p-1 bg-black text-white ${mostrarTextoHelp ? 'opacity-100 animate-cloudIn' : 'opacity-0'}`}>Ayuda</p>
         </div>
+        </Link>
+
+        <Link to="/Contacto">  
         <div className="cursor-pointer" onMouseEnter={() => setMostrarTextoContact(true)} onMouseLeave={() => setMostrarTextoContact(false)}>
         <IoIosContact className="text-2xl" />
         <p className={`text-xs absolute rounded-lg p-1 bg-black text-white ${mostrarTextoContact ? 'opacity-100 animate-cloudIn' : 'opacity-0'}`}>Contacto</p>
         </div>
+        </Link>
 
         <div className="cursor-pointer" onMouseEnter={() => setMostrarTextoLogout(true)} onMouseLeave={() =>setMostrarTextoLogout(false)}>
         {Logear && (
@@ -64,6 +79,10 @@ function Home({ Logear }) {
         <Route path="/Btrabajo" element={<Btrabajo />} />
         <Route path="/Actividad" element={<Actividad />} />
         <Route path="/Productos" element={<Productos />} />
+        <Route path="/Configuracion/*" element={<Configuracion/>} />
+        <Route path="/Ayuda" element={<Ayuda />} />
+        <Route path="/Soporte" element={<Soporte />} />
+        <Route path="/Contacto" element={<Contacto />} />
       </Routes>
 
       {location.pathname === "/" && (
